@@ -34,12 +34,12 @@ export const logoutUser = async () => {
   }
 };
 
-export const revokeGoogle = async () => {
+export const revokeGoogleCalendar = async () => {
   try {
-    const response = await apiClient.post('/revoke/google');
+    const response = await apiClient.post('/revoke/google/calendar');
     return response.data;
-  } catch (error) {
-    console.error("Error revoking Google connection:", error);
+  } catch (error){
+    console.error("Error revoking Google Calendar connection:", error);
     throw error;
   }
 };

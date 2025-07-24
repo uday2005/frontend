@@ -20,7 +20,7 @@ const ConnectionRow = ({ serviceName, isConnected, onConnect, onRevoke }) => {
 };
 
 
-export const UserStatusCard = ({ user, onLogout, onRevokeAll, onRevokeGoogle, onRevokeSlack }) => {
+export const UserStatusCard = ({ user, onLogout, onRevokeAll,onRevokeGoogleCalendar, onRevokeSlack }) => {
   const { displayName, avatarUrl, email, googleConnected, slackConnected } = user;
   
   // The URLs for our connection links
@@ -54,7 +54,7 @@ export const UserStatusCard = ({ user, onLogout, onRevokeAll, onRevokeGoogle, on
           serviceName="Google Calendar"
           isConnected={googleConnected}
           onConnect={googleConnectUrl}
-          onRevoke={onRevokeGoogle}
+          onRevoke={onRevokeGoogleCalendar}
         />
         <ConnectionRow 
           serviceName="Slack"

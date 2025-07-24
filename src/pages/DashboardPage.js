@@ -8,7 +8,7 @@ import {
   getUserStatus, 
   getAuditLog, 
   logoutUser, 
-  revokeGoogle, 
+  revokeGoogleCalendar, 
   revokeSlack, 
   revokeAll 
 } from '../api/api';
@@ -71,13 +71,12 @@ export const DashboardPage = () => {
     }
   };
   
-  const handleRevokeGoogle = async () => {
-    if (isActionLoading) return;
-    if (window.confirm("Are you sure you want to disconnect your Google account? This will prevent the agent from scheduling meetings.")) {
+const handleRevokeGoogleCalendar = async () => {
+    if (window.confirm("Are you sure you want to disconnect your Google account?")) {
       setIsActionLoading(true);
       try {
-        await revokeGoogle();
-        await refreshData(); // Refresh all page data to show the change
+        await revokeGoogleCalendar(); // <-- Use the new function
+        await refreshData();
       } catch (err) {
         alert("Failed to disconnect Google. Please try again.");
       } finally {
@@ -85,6 +84,7 @@ export const DashboardPage = () => {
       }
     }
   };
+  
   
   const handleRevokeSlack = async () => {
     if (isActionLoading) return;
@@ -142,7 +142,7 @@ export const DashboardPage = () => {
           user={user} 
           onLogout={handleLogout} 
           onRevokeAll={handleRevokeAll}
-          onRevokeGoogle={handleRevokeGoogle}
+          onRevokeGoogleCalendar={handleRevokeGoogleCalendar}
           onRevokeSlack={handleRevokeSlack}
         />
       )}
